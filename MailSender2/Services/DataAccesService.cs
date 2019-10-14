@@ -14,6 +14,7 @@ namespace MailSender2.Services
     {
         ObservableCollection<Email> GetEmails();
         int CreateEmail(Email email);
+        int DeleteEmail(Email email);
         //int AddEmail(Email email);
         //int UpdateEmail(Email email);
         //int DeleteEmail(Email email);
@@ -59,16 +60,16 @@ namespace MailSender2.Services
         //    context.SaveChanges();
         //    return email.Id;
         //}
-        //public int DeleteEmail(Email email)
-        //{
-        //    if (context.Entry(email).State == EntityState.Detached)
-        //    {
-        //        context.Emails.Attach(email);
-        //    }
-        //    context.Emails.Remove(email);
-        //    context.SaveChanges();
-        //    return email.Id;
-        //}
+        public int DeleteEmail(Email email)
+        {
+            if (context.Entry(email).State == EntityState.Detached)
+            {
+                context.Emails.Attach(email);
+            }
+            context.Emails.Remove(email);
+            context.SaveChanges();
+            return email.Id;
+        }
 
     }
 }

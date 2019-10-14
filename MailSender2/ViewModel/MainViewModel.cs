@@ -44,6 +44,7 @@ namespace MailSender2.ViewModel
 
             ReadAllCommand = new RelayCommand(GetEmails);
             SaveCommand = new RelayCommand<Email>(SaveEmail);
+            DeleteCommand = new RelayCommand<Email>(DeleteEmail);
         }
 
         Email _EmailInfo;
@@ -68,7 +69,19 @@ namespace MailSender2.ViewModel
             }
         }
 
+        public void DeleteEmail(Email email)
+        {
+            EmailInfo.Id = _serviceProxy.DeleteEmail(email);
+            if (EmailInfo.Id != 0)
+            {
+                Emails.Remove(EmailInfo);
+                RaisePropertyChanged(nameof(EmailInfo));
+            }
+        }
+
+
         public RelayCommand<Email> SaveCommand { get; set; }
+        public RelayCommand<Email> DeleteCommand { get; set; }
 
         private string filtName;
         public string FilterName
