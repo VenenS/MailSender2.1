@@ -1,9 +1,10 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
+using Common;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MailSender2.Classes;
+//using MailSender2.Classes;
 using MailSender2.Services;
 
 namespace MailSender2.ViewModel
@@ -58,6 +59,7 @@ namespace MailSender2.ViewModel
 
         public void SaveEmail(Email email)
         {
+            //EmailInfo.Id = _serviceProxy.UpdateEmail(email);
             EmailInfo.Id = _serviceProxy.CreateEmail(email);
             if (EmailInfo.Id != 0)
             {

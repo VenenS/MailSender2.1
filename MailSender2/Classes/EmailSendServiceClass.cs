@@ -86,35 +86,35 @@ namespace MailSender2.Classes
             }
         }
 
-        public void SendMails(ObservableCollection<Email> emails)
+        public void SendMails(ObservableCollection<Common.Email> emails)
         {
-            foreach (Email email in emails)
+            foreach (Common.Email email in emails)
             {
                 SendMail(email.Address, email.Name);
             }
         }
 
-        public void SendMailsParallel(ObservableCollection<Email> emails)
+        public void SendMailsParallel(ObservableCollection<Common.Email> emails)
         {
-            foreach(Email email in emails)
+            foreach(Common.Email email in emails)
             {
                 ThreadPool.QueueUserWorkItem(_ => SendMails(emails));
             }
         }
 
-        public async Task SendParallelAsync(ObservableCollection<Email> emails)
+        public async Task SendParallelAsync(ObservableCollection<Common.Email> emails)
         {
             var send_task = new List<Task>();
-            foreach(Email email in emails)
+            foreach(Common.Email email in emails)
             {
                 send_task.Add(SendMailAsync(email.Address, email.Name));
             }
             await Task.WhenAll(send_task).ConfigureAwait(false);
         }
 
-        public async Task SendMailsAsync(ObservableCollection<Email> emails)
+        public async Task SendMailsAsync(ObservableCollection<Common.Email> emails)
         {
-            foreach(Email email in emails)
+            foreach(Common.Email email in emails)
             {
                 await SendMailAsync(email.Address, email.Name).ConfigureAwait(false);
             }

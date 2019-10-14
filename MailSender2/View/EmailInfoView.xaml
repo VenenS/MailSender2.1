@@ -33,10 +33,10 @@
                       ItemsSource="{Binding EmailsView}"
                       OpacityMask="#72FFFFFF" Foreground="Black">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
-                    <DataGridTextColumn Header="Email" Binding="{Binding Address}"/>
-                    <DataGridTextColumn Header="Коментарий" Binding="{Binding Comment}"/>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="30"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Address}" Width="200"/>
+                    <DataGridTextColumn Header="Коментарий" Binding="{Binding Comment}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>

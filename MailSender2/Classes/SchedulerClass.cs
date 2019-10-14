@@ -14,7 +14,7 @@ namespace MailSender2.Classes
         DispatcherTimer timer = new DispatcherTimer(); // таймер
         EmailSendServiceClass emailSender; // экземпляр класса, отвечающего за отправку писем
         DateTime dtSend; // дата и время отправки
-        ObservableCollection<Email> emails;
+        ObservableCollection<Common.Email> emails;
 
         /// <summary>
         /// Метод, в который превращаем строку из текстбокса tbTimePicker в TimeSpan
@@ -39,7 +39,7 @@ namespace MailSender2.Classes
         /// <param name="emailSender"></param>
         /// <param name="emails"></param>
         public void SendEmails(EmailSendServiceClass emailSender,
-            ObservableCollection<Email> emails)
+            ObservableCollection<Common.Email> emails)
         {
             this.emailSender = emailSender; // Экземпляр класса, отвечающего за отправку писем
             this.emails = emails;
