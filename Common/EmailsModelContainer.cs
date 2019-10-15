@@ -9,7 +9,7 @@ namespace Common
 {
     public partial class EmailsModelContainer:DbContext
     {
-        public EmailsModelContainer() : base("MailsAndSendersConnectionString") { }
+        public EmailsModelContainer() : base("MailSenderDB") { }
         public virtual DbSet<Email> Emails { get; set; }
     }
 }

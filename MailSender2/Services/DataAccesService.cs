@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 //using MailSender2.Classes;
 using Common;
 using System.Data.Entity;
+using GeneratedCode;
 
 namespace MailSender2.Services
 {
@@ -21,6 +22,7 @@ namespace MailSender2.Services
     }
     public class DataAccessService : IDataAccessService
     {
+
         EmailsModelContainer context;
         //EmailsDataContext context;
         public DataAccessService()
@@ -42,6 +44,13 @@ namespace MailSender2.Services
         {
             //context.Email.InsertOnSubmit(email);
             //context.SubmitChanges();
+            ReportSender report = new ReportSender()
+            {
+                AddSender = email.ToString()+" "+DateTime.Now,
+                RemoveSender = "",
+            };
+            const string report_file = "Report.docx";
+            report.CreatePackage(report_file);
             context.Emails.Add(email);
             context.SaveChanges();
 
@@ -62,10 +71,18 @@ namespace MailSender2.Services
         //}
         public int DeleteEmail(Email email)
         {
-            if (context.Entry(email).State == EntityState.Detached)
+            //if (context.Entry(email).State == EntityState.Detached)
+            //{
+            //    context.Emails.Attach(email);
+            //}
+            //context.Emails.Attach(email);
+            ReportSender report = new ReportSender()
             {
-                context.Emails.Attach(email);
-            }
+                AddSender = "",
+                RemoveSender = email.ToString()+" "+DateTime.Now
+            };
+            const string report_file = "Report.docx";
+            report.CreatePackage(report_file);
             context.Emails.Remove(email);
             context.SaveChanges();
             return email.Id;
